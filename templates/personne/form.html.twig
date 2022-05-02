@@ -1,0 +1,21 @@
+{% extends 'todo/base.html.twig' %}
+{# {% form_theme formPersonne 'bootstrap_4_layout.html.twig' %} #}
+
+{% block body %}
+{# {{form(formPersonne)}} #}
+{{ form_start(formPersonne) }}
+{{ form_row(formPersonne.nom,{'attr': {'placeholder':'nom'}}) }}
+{{ form_row(formPersonne.prenom,{'attr': {'placeholder':'prenom'}}) }}
+{{ form_row(formPersonne.age,{'attr': {'placeholder':'age'}}) }}
+{{ form_row(formPersonne.email,{'attr': {'placeholder':'email'}}) }}
+{{ form_row(formPersonne.voiture )}}
+
+<button type="submit">
+{%if updateMode %}
+update
+{% else %}
+add
+{% endif %}
+</button>
+{{ form_end(formPersonne) }}
+{% endblock %}

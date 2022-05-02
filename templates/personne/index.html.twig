@@ -1,0 +1,68 @@
+{% extends 'todo/base.html.twig' %}
+
+{% block body %}
+ {%for msg in app.session.flashbag.get('danger')%}
+   <div class="alert alert-danger">{{msg}}</div>
+    {%endfor%}
+     {%for msg in app.session.flashbag.get('success')%}
+   <div class="alert alert-success">{{msg}}</div>
+    {%endfor%}
+<table>
+<tr>
+<th>nom</th>
+<th>prenom</th>
+<th>age</th>
+<th>email</th>
+{# <th>voiture</th> #}
+<th>date de creation</th>
+<th>date de mise a jour</th>
+</tr>
+{% for personne in personnes %}
+    
+
+<tr>
+<td>{{personne.nom}}</td>
+<td>{{personne.prenom}}</td>
+<td>{{personne.age}}</td>
+<td>{{personne.email}}</td>
+{# <td >{% for item in personne.voiture %}
+  {{item}} <br>
+{% endfor %}</td> #}
+<td>{{personne.createdAt|date('d/m/Y')}}</td>
+<td>{{personne.updatedAt|date('d/m/Y')}}</td>
+<td><a href="{{path("delete.personne",{'personne':personne.id})}}">delete</a></td>
+<td><a href="{{path("add.form.personne",{'personne':personne.id})}}">update</a></td>
+
+
+
+
+</tr>
+
+{% endfor %}
+
+
+
+</table>
+<h2>resultat requete</h2>
+<table class="table">
+<tr>
+<th>nom</th>
+<th>prenom</th>
+<th>age</th>
+<th>email</th>
+</tr>
+{% for personne in personneRequete %}
+    
+
+<tr>
+<td>{{personne.nom}}</td>
+<td>{{personne.prenom}}</td>
+<td>{{personne.age}}</td>
+<td>{{personne.email}}</td>
+{# <td>{{personne.ageMoyen}}</td>
+<td>{{personne.total}}</td> #}
+</tr>
+{% endfor %}
+
+</table>
+{% endblock %}

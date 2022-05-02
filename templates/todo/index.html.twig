@@ -1,0 +1,36 @@
+{% extends "/todo/base.html.twig" %}
+
+{% block body %}
+   {%for msg in app.session.flashbag.get('info')%}
+   <div class="alert alert-info">{{msg}}</div>
+    {%endfor%}
+     {%for msg in app.session.flashbag.get('danger')%}
+   <div class="alert alert-danger">{{msg}}</div>
+    {%endfor%}
+     {%for msg in app.session.flashbag.get('success')%}
+   <div class="alert alert-success">{{msg}}</div>
+    {%endfor%}
+
+   <table>
+       <tr>
+           <th>title</th>
+           <th>task</th>
+       </tr>
+    {%for cle,element in app.session.get("tab") %}
+       <tr>
+           <td>{{cle}}</td>
+           <td>{{element}}</td>
+           <td>
+           <div class="btn-group" role="group" aria-label="Basic example">
+           <button type="button" class="btn btn-secondary"><a href="{{path("todo.supp",{'title':cle})}}">supprimer</a></button>
+  </div>
+           
+           </td>
+       </tr>
+    {%endfor%}
+   </table> 
+   
+   
+   
+   {% endblock %}
+
